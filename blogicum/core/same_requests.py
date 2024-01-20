@@ -35,3 +35,4 @@ def get_category():
         is_published=True
     )
     return query_set
+    
