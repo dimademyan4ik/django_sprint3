@@ -22,7 +22,7 @@ def category_posts(request, category_slug):
     """Отображение публикации по категории"""
     max_res = 10
     category = get_object_or_404(get_category(), slug=category_slug, )
-    post_list = get_posts().filter(category__slug=category_slug).order_by
-    ("-pub_date")[:max_res]
+    post_list = get_posts().filter(category__slug=category_slug).order_by(
+        "-pub_date")[:max_res]
     context = {'category': category, 'post_list': post_list}
     return render(request, 'blog/category.html', context)
