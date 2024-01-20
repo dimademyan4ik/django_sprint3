@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+
 from core.models import BaseModel, BaseTitle
 
 
@@ -25,9 +26,11 @@ class Category(BaseModel, BaseTitle):
     description = models.TextField(verbose_name="Описание")
     slug = models.SlugField(verbose_name="Идентификатор",
                             unique=True,
-                            help_text="Идентификатор страницы для URL; "
-                                      "разрешены символы латиницы, "
-                                      "цифры, дефис и подчёркивание.",)
+                            help_text=(
+                                "Идентификатор страницы для URL; "
+                                "разрешены символы латиницы, "
+                                "цифры, дефис и подчёркивание."
+                            ),)
 
     class Meta:
         verbose_name = "категория"
@@ -42,20 +45,24 @@ class Post(BaseModel, BaseTitle):
 
     text = models.TextField(verbose_name="Текст")
     pub_date = models.DateTimeField(verbose_name="Дата и время публикации",
-                                    help_text="Если установить дату и время "
-                                    "в будущем — можно делать отложенные "
-                                    "публикации.",)
+                                    help_text=(
+                                        "Если установить дату и время "
+                                        "в будущем — можно делать отложенные "
+                                        "публикации."
+                                    ),)
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        verbose_name="Автор публикации",)
+        verbose_name="Автор публикации",
+        related_name="posts",
+    )
     location = models.ForeignKey(
         Location,
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
         verbose_name="Местоположение",
-        related_name="loc_posts",
+        related_name="posts",
     )
     category = models.ForeignKey(
         Category,
