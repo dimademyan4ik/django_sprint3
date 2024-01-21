@@ -2,8 +2,9 @@ from django.shortcuts import render, get_object_or_404
 
 from core.same_requests import get_posts, get_category
 
-MAX_RES_INDEX=5
-MAX_RES_CATEGORY_POSTS=10
+MAX_RES_INDEX = 5
+MAX_RES_CATEGORY_POSTS = 10
+
 
 def index(request):
     """Главная страница, Лента записей"""
