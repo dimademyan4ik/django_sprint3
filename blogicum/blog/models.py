@@ -48,8 +48,7 @@ class Post(BaseModel, BaseTitle):
                                     help_text=(
                                         "Если установить дату и время "
                                         "в будущем — можно делать отложенные "
-                                        "публикации."
-                                    ),)
+                                        "публикации."),)
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -68,7 +67,7 @@ class Post(BaseModel, BaseTitle):
         Category,
         on_delete=models.SET_NULL,
         null=True,
-        related_name="cat_posts",
+        related_name="posts",
         verbose_name="Категория",
     )
 

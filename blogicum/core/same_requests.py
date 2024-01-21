@@ -11,15 +11,6 @@ def get_posts():
             "location",
             "author",
         )
-        .only(
-            "title",
-            "text",
-            "pub_date",
-            "author__username",
-            "category__title",
-            "category__slug",
-            "location__name",
-        )
         .filter(
             pub_date__lte=date_now,
             is_published=True,
@@ -31,7 +22,7 @@ def get_posts():
 
 def get_category():
     """Вернуть результат запроса к таблице blog_category."""
-    query_set = Category.objects.values("title", "description").filter(
+    query_set = Category.objects.filter(
         is_published=True
     )
     return query_set
